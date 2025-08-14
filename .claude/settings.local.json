@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "mcp__ide__getDiagnostics",
+      "Bash(npm run start:dev:*)",
+      "Bash(npm install:*)",
+      "Bash(rm:*)",
+      "Bash(ng serve)",
+      "Bash(curl:*)"
+    ],
+    "defaultMode": "acceptEdits"
+  }
+}
