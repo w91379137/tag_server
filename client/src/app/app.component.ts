@@ -14,9 +14,16 @@ import { CommonModule } from '@angular/common';
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav me-auto">
             <li class="nav-item">
               <a class="nav-link" routerLink="/" routerLinkActive="active">首頁</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link btn btn-outline-light btn-sm" routerLink="/create">
+                + 創建文章
+              </a>
             </li>
           </ul>
         </div>
