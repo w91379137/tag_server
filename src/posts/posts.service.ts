@@ -30,6 +30,7 @@ export class PostsService {
 
   async findAll(): Promise<Post[]> {
     return this.postsRepository.find({
+      where: { isDelete: false },
       relations: ['tags'],
       order: { createdAt: 'DESC' },
     });
@@ -37,7 +38,7 @@ export class PostsService {
 
   async findOne(id: number): Promise<Post> {
     const post = await this.postsRepository.findOne({
-      where: { id },
+      where: { id, isDelete: false },
       relations: ['tags'],
     });
     
@@ -64,7 +65,8 @@ export class PostsService {
 
   async remove(id: number): Promise<void> {
     const post = await this.findOne(id);
-    await this.postsRepository.remove(post);
+    post.isDelete = true;
+    await this.postsRepository.save(post);
   }
 
   async findByTags(tagNames: string[]): Promise<Post[]> {
@@ -72,6 +74,7 @@ export class PostsService {
       .createQueryBuilder('post')
       .leftJoinAndSelect('post.tags', 'tag')
       .where('tag.name IN (:...tagNames)', { tagNames })
+      .andWhere('post.isDelete = :isDelete', { isDelete: false })
       .orderBy('post.createdAt', 'DESC')
       .getMany();
   }

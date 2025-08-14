@@ -18,6 +18,9 @@ export class Post {
   @Column({ default: true })
   published: boolean;
 
+  @Column({ default: false })
+  isDelete: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 
