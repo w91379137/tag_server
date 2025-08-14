@@ -58,9 +58,12 @@ import { Post } from '../../models/post.model';
           </div>
         </article>
 
-        <div class="mt-4">
+        <div class="mt-4 d-flex justify-content-between">
           <button class="btn btn-secondary" (click)="goBack()">
             ← 返回文章列表
+          </button>
+          <button class="btn btn-outline-primary" [routerLink]="['/post', post.id, 'edit']" *ngIf="post">
+            ✏️ 編輯文章
           </button>
         </div>
       </div>
